@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"> <!-- ESTO SIEMPRE DEBE DE ESTAR -->
+
+    <head th:fragment="head">
+
+        <title>Dos Chingones</title> <!-- Como utilizar todo lo que se descargo IMPORTANTE --> 
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/css/jquery.min.js}"></script>
+        <script th:src="@{/webjars/pooper.js/umd/pooper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
+
+
+    </head>
+    <body>
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" th:href="@{/}"> <i class="fa-solid fa-pepper-hot">DC</i></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Opciones</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" th:href="@{/categoria/listado}">[[#{plantilla.categoria}]]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" th:href="@{/menu/listado}">[[#{plantilla.menu}]]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" th:href="@{/inicio/nosotros}">Sobre Nosotros</a>
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="@{/usuario/listado}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Opciones de Ingreso
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="#">Iniciar Sesion</a></li>
+                                        <li><a class="dropdown-item" href="#">Registrase</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <ul class="nav-item">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">[[#{plantilla.idioma}]]</a>
+                                        <ul class="dropdown-menu dropdown-menu-dark"><!-- Menu oscuro -->
+                                            <li><a class="dropdown-item"  th:href="@{/(lang=es)}">ES</a></li>
+                                            <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+
+        <footer th:fragment="footer" class="bg-dark-subtle text-white  p-3">
+            <div class="container">
+                <div class="col"> 
+                    <p class="lead text-center">&COPY; [[#{plantilla.derechos}]]</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

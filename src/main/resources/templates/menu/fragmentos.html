@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Dos Chingones</title>
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
+        <section th:fragment="tabsCategorias" id="categorias">
+            <div class="row py-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link bg-secondary text-white"
+                           href="/menu/listado">
+                            [[#{pruebas.todas}]]</a>
+                    </li>  
+                    <li th:each="c : ${categorias}"
+                        class="nav-item">
+                        <a class="nav-link bg-warning text-white"
+                           th:href="@{/menu/listado/}+${c.idCategoria}"
+                           >[[${c.descripcion}]]</a>
+                    </li> 
+                </ul>
+            </div>
+        </section>
+        <!-- 2 Fragmento para el listado de productos en bonito  esto es para el menu[[${}]] -->
+        <section th:fragment="listadoProductos" id="productos">
+            <div class="row row-cols-4 text-center">
+                <div class="card p-2" th:each="p : ${productos}">
+                    <figure>
+                        <img th:src="${p.rutaImagen}"
+                             height="200" alt="alt"/>
+                        <figcaption>
+                            [[${p.precio}]] ([[${p.existencias}]])
+                        </figcaption>
+                    </figure>
+                    <div class="card-header bg-warning">
+                        <h4 class="card-title">[[${p.descripcion}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"> [[${p.detalle}]]</p>
+                    </div>
+                    <div class="col-md-3">
+                         <!-- Boton para agregar al carrito-->
+                        <button 
+                            type="button" 
+                            class="btn pd-9 btn-sm bg-warning" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#agregar" >
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>  
+            </div>
+
+        </section>
+
+
+    </body>
+</html>
