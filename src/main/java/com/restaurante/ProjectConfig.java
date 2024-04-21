@@ -35,14 +35,15 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addInterceptor(localeChangeInterceptor());
 
     }
-     @Override
+
+    @Override
     public void addViewControllers(ViewControllerRegistry registro) {
         registro.addViewController("/").setViewName("index");
         registro.addViewController("/index").setViewName("index");
         registro.addViewController("/login").setViewName("login");
+        registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
         registro.addViewController("/inicio/nosotros").setViewName("/inicio/nosotros");
         registro.addViewController("/inicio/banner").setViewName("/inicio/banner");
 
     }
-
 }

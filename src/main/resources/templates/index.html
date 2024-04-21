@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-
-<html
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
-
-    <head th:replace="~{layout/plantilla :: head}"> <!-- Esto jala la informacion que esta en el layout -->
-        <title>Dos Chingones</title>
-    </head>
-    
-    <body>
-        <header th:replace="~{layout/plantilla :: header}"> </header> <!-- Fragmento y la ruta-->
-
-        <section th:replace="~{inicio/banner :: header}"/>
-         <!-- <section th:replace="~{inicio/nosotros :: header}"/> -->
-        <section th:replace="~{inicio/socialmedia :: header}"/>
-        
-        <footer th:replace="~{layout/plantilla :: footer}"></footer>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Dos Chingones</title>
+</head>
+<body>
+    <header th:replace="~{layout/plantilla :: header}"> </header>
+    <section th:replace="~{inicio/banner :: header}"/>
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
 </html>

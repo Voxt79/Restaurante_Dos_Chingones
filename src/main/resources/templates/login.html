@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Dos Chingones</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        <div class="container my-5">
+            <div class="row align-items-center">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-warning text-white"><h2>[[#{login.login}]]</h2></div>
+                        <div class="card-body">
+                            <form method="POST" th:action="@{/login}">
+                                <div class="form-group row my-3">
+                                    <label class="col-md-5 my-auto" for="username"><i class="fas fa-user-lock"></i> <span
+                                            style="color: black;">[[#{login.username}]]:</span></label>
+                                    <div class="col-md-7 my-auto">
+                                        <input class="form-control" type="text" name="username" id="username"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-3">
+                                    <label class="col-md-5 my-auto" for="password"><i class="fas fa-key"></i> <span
+                                            style="color: black;">[[#{login.password}]]</span></label>
+                                    <div class="col-md-7 my-auto"><input class="form-control" type="password" name="password"
+                                                                         id="password"/></div>
+                                </div>
+                                <div class="card-footer col text-center">
+                                    <button class="btn btn-primary" style="background-color: orange;">
+                                        <a th:href="@{/registro/nuevo}" class="btn text-white"><i
+                                                class="fas fa-user-plus"></i> <span style="color: black;">Registrase</span></a>
+                                    </button>
+                                    <button class="btn btn-success" type="submit" style="background-color: greenyellow;">
+                                        <span class="btn text-white"><i class="fas fa-sign-in-alt"></i>
+                                            <span style="color: black;">[[#{login.login}]]</span></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div th:if="${error}">
+                        <h3><span style="color: orange;">[[#{error.login}]]</span></h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Dos Chingones</title>
+    </head>
+    <body>
+
+<section th:fragment="listadoUsuarios" id="usuarios">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-9 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Información del Usuario</h4>
+                    </div>
+                    <div th:if="${usuarioAutenticado != null}">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Nombre:</strong> <span th:text="${usuarioAutenticado.nombre}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Apellidos:</strong> <span th:text="${usuarioAutenticado.apellidos}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Nombre de Usuario:</strong> <span th:text="${usuarioAutenticado.username}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Correo Electrónico:</strong> <span th:text="${usuarioAutenticado.correo}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <a th:href="@{/usuario/eliminar/}+${usuarioAutenticado.idUsuario}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </a>
+                                <a th:href="@{/usuario/modificar/}+${usuarioAutenticado.idUsuario}" class="btn btn-success mls-2">
+                                    <i class="fas fa-pencil"></i> Modificar
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-center p-2" th:if="${usuarioAutenticado == null}">
+                        <span>No hay usuario autenticado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarUsuario">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/registro/guardar}" th:object="${usuario}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                        <section th:replace="~{registro/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Actualizar usuario</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="nombre" th:field="*{nombre}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="apellidos">Apellidos</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="apellidos" th:field="*{apellidos}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="username">Nombre de Usuario</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="username" th:field="*{username}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="correo">Correo Electronico</label>
+                                                    <input type="email" class="form-control" 
+                                                           name="correo" th:field="*{correo}">
+                                                </div>                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                         
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4" style="background-color: #9C89FC">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/registro/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/registro/eliminar/}+${usuario.idUsuario}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Eliminar Usuario
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid" >
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
